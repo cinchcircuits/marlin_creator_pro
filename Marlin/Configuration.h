@@ -711,14 +711,15 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4[, E5]]]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 101.02, 100.82, 398.22, 124.6 }
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 101.02, 100.82, 398.22, 124.6 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 404.08, 403.28, 1592.88, 124.6 }
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4[, E5]]]]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 3, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 1200, 1200, 3, 25 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -726,7 +727,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4[, E5]]]]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 1500, 1500, 10, 1000 }
+#define DEFAULT_MAX_ACCELERATION      { 2000, 2000, 10, 1000 }
 
 /**
  * Default Acceleration (change/s) change = mm/s
@@ -736,9 +737,9 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION          1500    // X, Y, Z and E acceleration for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  1500    // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   1500    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_ACCELERATION          2000    // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_RETRACT_ACCELERATION  2000    // E acceleration for retracts
+#define DEFAULT_TRAVEL_ACCELERATION   2000    // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Junction Deviation
@@ -1038,8 +1039,8 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 220
-#define Y_BED_SIZE 160
+#define X_BED_SIZE 225
+#define Y_BED_SIZE 145
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -1047,7 +1048,7 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 203
+#define Z_MAX_POS 150
 
 /**
  * Software Endstops

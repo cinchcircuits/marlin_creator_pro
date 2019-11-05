@@ -1535,13 +1535,13 @@
   #if AXIS_DRIVER_TYPE_X(TMC26X)
     #define X_MAX_CURRENT     1000  // (mA)
     #define X_SENSE_RESISTOR    91  // (mOhms)
-    #define X_MICROSTEPS        16  // Number of microsteps
+    #define X_MICROSTEPS        64  // Number of microsteps
   #endif
 
   #if AXIS_DRIVER_TYPE_X2(TMC26X)
     #define X2_MAX_CURRENT    1000
     #define X2_SENSE_RESISTOR   91
-    #define X2_MICROSTEPS       16
+    #define X2_MICROSTEPS       64
   #endif
 
   #if AXIS_DRIVER_TYPE_Y(TMC26X)
@@ -1637,43 +1637,43 @@
 
   #if AXIS_IS_TMC(X)
     #define X_CURRENT     800  // (mA) RMS current. Multiply by 1.414 for peak current.
-    #define X_MICROSTEPS   16  // 0..256
+    #define X_MICROSTEPS   64  // 0..256
     #define X_RSENSE     0.11
   #endif
 
   #if AXIS_IS_TMC(X2)
     #define X2_CURRENT    800
-    #define X2_MICROSTEPS  16
+    #define X2_MICROSTEPS  64
     #define X2_RSENSE    0.11
   #endif
 
   #if AXIS_IS_TMC(Y)
     #define Y_CURRENT     800
-    #define Y_MICROSTEPS   16
+    #define Y_MICROSTEPS   64
     #define Y_RSENSE     0.11
   #endif
 
   #if AXIS_IS_TMC(Y2)
     #define Y2_CURRENT    800
-    #define Y2_MICROSTEPS  16
+    #define Y2_MICROSTEPS  64
     #define Y2_RSENSE    0.11
   #endif
 
   #if AXIS_IS_TMC(Z)
     #define Z_CURRENT     800
-    #define Z_MICROSTEPS   16
+    #define Z_MICROSTEPS   64
     #define Z_RSENSE     0.11
   #endif
 
   #if AXIS_IS_TMC(Z2)
     #define Z2_CURRENT    800
-    #define Z2_MICROSTEPS  16
+    #define Z2_MICROSTEPS  64
     #define Z2_RSENSE    0.11
   #endif
 
   #if AXIS_IS_TMC(Z3)
     #define Z3_CURRENT    800
-    #define Z3_MICROSTEPS  16
+    #define Z3_MICROSTEPS  64
     #define Z3_RSENSE    0.11
   #endif
 
