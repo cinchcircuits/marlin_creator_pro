@@ -1637,19 +1637,19 @@
 
   #if AXIS_IS_TMC(X)
     #define X_CURRENT     800  // (mA) RMS current. Multiply by 1.414 for peak current.
-    #define X_MICROSTEPS   16  // 0..256
+    #define X_MICROSTEPS   128  // 0..256
     #define X_RSENSE     0.11
   #endif
 
   #if AXIS_IS_TMC(X2)
     #define X2_CURRENT    800
-    #define X2_MICROSTEPS  16
+    #define X2_MICROSTEPS  128
     #define X2_RSENSE    0.11
   #endif
 
   #if AXIS_IS_TMC(Y)
     #define Y_CURRENT     800
-    #define Y_MICROSTEPS   16
+    #define Y_MICROSTEPS   128
     #define Y_RSENSE     0.11
   #endif
 
@@ -1736,7 +1736,7 @@
    * The default SW SPI pins are defined the respective pins files,
    * but you can override or define them here.
    */
-  //#define TMC_USE_SW_SPI
+  #define TMC_USE_SW_SPI
   //#define TMC_SW_MOSI       -1
   //#define TMC_SW_MISO       -1
   //#define TMC_SW_SCK        -1
