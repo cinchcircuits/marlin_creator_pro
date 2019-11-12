@@ -279,9 +279,10 @@
  */
 //#define USE_CONTROLLER_FAN
 #if ENABLED(USE_CONTROLLER_FAN)
-  #define CONTROLLER_FAN_PIN P1_26        // Set a custom pin for the controller fan
+  //#define CONTROLLER_FAN_PIN P1_26        // Set a custom pin for the controller fan
+  #define CONTROLLER_FAN_PIN P2_03
   #define CONTROLLERFAN_SECS 60          // Duration in seconds for the fan to run after all motors are disabled
-  #define CONTROLLERFAN_SPEED 255        // 255 == full speed
+  #define CONTROLLERFAN_SPEED 250        // 255 == full speed
 #endif
 
 // When first starting the main fan, run it at full speed for the
@@ -301,7 +302,7 @@
  *
  * Define one or both of these to override the default 0-255 range.
  */
-//#define FAN_MIN_PWM 50
+#define FAN_MIN_PWM 80
 //#define FAN_MAX_PWM 128
 
 /**
@@ -1636,31 +1637,31 @@
   #define INTERPOLATE       true  // Interpolate X/Y/Z_MICROSTEPS to 256
 
   #if AXIS_IS_TMC(X)
-    #define X_CURRENT    1000  // (mA) RMS current. Multiply by 1.414 for peak current.
+    #define X_CURRENT     800  // (mA) RMS current. Multiply by 1.414 for peak current.
     #define X_MICROSTEPS   64  // 0..256
     #define X_RSENSE     0.11
   #endif
 
   #if AXIS_IS_TMC(X2)
-    #define X2_CURRENT   1000
+    #define X2_CURRENT    800
     #define X2_MICROSTEPS  64
     #define X2_RSENSE    0.11
   #endif
 
   #if AXIS_IS_TMC(Y)
-    #define Y_CURRENT    1000
+    #define Y_CURRENT     800
     #define Y_MICROSTEPS   64
     #define Y_RSENSE     0.11
   #endif
 
   #if AXIS_IS_TMC(Y2)
-    #define Y2_CURRENT   1000
+    #define Y2_CURRENT    800
     #define Y2_MICROSTEPS  64
     #define Y2_RSENSE    0.11
   #endif
 
   #if AXIS_IS_TMC(Z)
-    #define Z_CURRENT    1000
+    #define Z_CURRENT     800
     #define Z_MICROSTEPS   64
     #define Z_RSENSE     0.11
   #endif
