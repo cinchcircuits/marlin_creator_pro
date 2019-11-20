@@ -277,10 +277,13 @@
  * The fan will turn on automatically whenever any stepper is enabled
  * and turn off after a set period after all steppers are turned off.
  */
-//#define USE_CONTROLLER_FAN
+#define USE_CONTROLLER_FAN
 #if ENABLED(USE_CONTROLLER_FAN)
   //#define CONTROLLER_FAN_PIN P1_26        // Set a custom pin for the controller fan
-  #define CONTROLLER_FAN_PIN P2_03
+  // P1_28 is the X+ endstop pin
+  //#define CONTROLLER_FAN_PIN P2_03
+  // P3_25 is a pin on EXP2
+  #define CONTROLLER_FAN_PIN P3_25
   #define CONTROLLERFAN_SECS 60          // Duration in seconds for the fan to run after all motors are disabled
   #define CONTROLLERFAN_SPEED 250        // 255 == full speed
 #endif
@@ -306,7 +309,8 @@
 //#define FAN_MAX_PWM 128
 
 /**
- * FAST PWM FAN Settings
+ * FAST PWM FAN SettingsFAN_PIN
+ * 
  *
  * Use to change the FAST FAN PWM frequency (if enabled in Configuration.h)
  * Combinations of PWM Modes, prescale values and TOP resolutions are used internally to produce a
