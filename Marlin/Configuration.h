@@ -1327,7 +1327,9 @@
 
 #if ENABLED(Z_SAFE_HOMING)
   #define Z_SAFE_HOMING_X_POINT ((X_BED_SIZE) / 2)    // X point for Z homing when homing all axes (G28).
-  #define Z_SAFE_HOMING_Y_POINT ((Y_BED_SIZE) / 2)    // Y point for Z homing when homing all axes (G28).
+  //#define Z_SAFE_HOMING_Y_POINT ((Y_BED_SIZE) / 2)    // Y point for Z homing when homing all axes (G28).
+  // With the BL touch in a wach place, bed size / 2 is not a good place
+  #define Z_SAFE_HOMING_Y_POINT (20)    // Y point for Z homing when homing all axes (G28).
 #endif
 
 // Homing speeds (mm/m)
