@@ -909,7 +909,7 @@
  *  z 2.50
  */
 #define X_PROBE_OFFSET_FROM_EXTRUDER 0  // X offset: -left  +right  [of the nozzle]
-#define Y_PROBE_OFFSET_FROM_EXTRUDER -49  // Y offset: -front +behind [the nozzle]
+#define Y_PROBE_OFFSET_FROM_EXTRUDER 49  // Y offset: -front +behind [the nozzle]
 #define Z_PROBE_OFFSET_FROM_EXTRUDER -1.4  // Z offset: -below +above  [the nozzle]
 
 // Certain types of probes need to stay away from edges
@@ -1327,9 +1327,9 @@
 
 #if ENABLED(Z_SAFE_HOMING)
   #define Z_SAFE_HOMING_X_POINT ((X_BED_SIZE) / 2)    // X point for Z homing when homing all axes (G28).
-  //#define Z_SAFE_HOMING_Y_POINT ((Y_BED_SIZE) / 2)    // Y point for Z homing when homing all axes (G28).
+  #define Z_SAFE_HOMING_Y_POINT ((Y_BED_SIZE) / 2)    // Y point for Z homing when homing all axes (G28).
   // With the BL touch in a wach place, bed size / 2 is not a good place
-  #define Z_SAFE_HOMING_Y_POINT (20)    // Y point for Z homing when homing all axes (G28).
+  //#define Z_SAFE_HOMING_Y_POINT (20)    // Y point for Z homing when homing all axes (G28).
 #endif
 
 // Homing speeds (mm/m)
