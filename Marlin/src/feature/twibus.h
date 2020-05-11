@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2019 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -62,7 +62,7 @@ class TWIBus {
      * @brief Internal buffer
      * @details A fixed buffer. TWI commands can be no longer than this.
      */
-    char buffer[TWIBUS_BUFFER_SIZE];
+    uint8_t buffer[TWIBUS_BUFFER_SIZE];
 
 
   public:
@@ -218,12 +218,11 @@ class TWIBus {
        *          If a string is passed, write it into the buffer first.
        */
       void reply(char str[]=nullptr);
-      inline void reply(const char str[]) { this->reply((char*)str); }
+      inline void reply(const char str[]) { reply((char*)str); }
 
     #endif
 
     #if ENABLED(DEBUG_TWIBUS)
-
       /**
        * @brief Prints a debug message
        * @details Prints a simple debug message "TWIBus::function: value"
@@ -233,6 +232,10 @@ class TWIBus {
       static void debug(const char func[], char c);
       static void debug(const char func[], char adr[]);
       static inline void debug(const char func[], uint8_t v) { debug(func, (uint32_t)v); }
-
+    #else
+      static inline void debug(const char[], uint32_t) {}
+      static inline void debug(const char[], char) {}
+      static inline void debug(const char[], char[]) {}
+      static inline void debug(const char[], uint8_t) {}
     #endif
 };

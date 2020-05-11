@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2019 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,11 +43,11 @@
 XPT2046 touch;
 extern int8_t encoderDiff;
 
-void XPT2046::init(void) {
+void XPT2046::init() {
   SET_INPUT(TOUCH_MISO_PIN);
   SET_OUTPUT(TOUCH_MOSI_PIN);
   SET_OUTPUT(TOUCH_SCK_PIN);
-  OUT_WRITE(TOUCH_CS_PIN, 1);
+  OUT_WRITE(TOUCH_CS_PIN, HIGH);
 
   #if PIN_EXISTS(TOUCH_INT)
     // Optional Pendrive interrupt pin
@@ -133,6 +133,14 @@ uint16_t XPT2046::getInTouch(const XPTCoordinate coordinate) {
     return (data[0] + data[2]) >> 1;
 
   return (data[1] + data[2]) >> 1;
+}
+
+bool XPT2046::getTouchPoint(uint16_t &x, uint16_t &y) {
+  if (isTouched()) {
+    x = getInTouch(XPT2046_X);
+    y = getInTouch(XPT2046_Y);
+  }
+  return isTouched();
 }
 
 #endif // TOUCH_BUTTONS

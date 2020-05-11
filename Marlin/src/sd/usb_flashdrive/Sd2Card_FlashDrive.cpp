@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2019 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -40,7 +40,7 @@
 
 #if ENABLED(USB_FLASH_DRIVE_SUPPORT)
 
-#include "../../Marlin.h"
+#include "../../MarlinCore.h"
 #include "../../core/serial.h"
 #include "../../module/temperature.h"
 
@@ -117,7 +117,7 @@ bool Sd2Card::usbStartup() {
     if (!UHS_START) {
       SERIAL_ECHOLNPGM(" failed.");
       #if EITHER(ULTRA_LCD, EXTENSIBLE_UI)
-        LCD_MESSAGEPGM("USB start failed");
+        LCD_MESSAGEPGM(MSG_MEDIA_USB_FAILED);
       #endif
       return false;
     }
@@ -214,7 +214,7 @@ void Sd2Card::idle() {
             SERIAL_ECHOLNPGM("Waiting for media");
           #endif
           #if EITHER(ULTRA_LCD, EXTENSIBLE_UI)
-            LCD_MESSAGEPGM("Waiting for media");
+            LCD_MESSAGEPGM(MSG_MEDIA_WAITING);
           #endif
           GOTO_STATE_AFTER_DELAY(state, 2000);
         }
@@ -231,7 +231,7 @@ void Sd2Card::idle() {
       #endif
       #if EITHER(ULTRA_LCD, EXTENSIBLE_UI)
         if (state != MEDIA_READY)
-          LCD_MESSAGEPGM("USB device removed");
+          LCD_MESSAGEPGM(MSG_MEDIA_USB_REMOVED);
       #endif
       GOTO_STATE_AFTER_DELAY( WAIT_FOR_DEVICE, 0 );
     }
@@ -242,14 +242,14 @@ void Sd2Card::idle() {
         SERIAL_ECHOLNPGM("Media removed");
       #endif
       #if EITHER(ULTRA_LCD, EXTENSIBLE_UI)
-        LCD_MESSAGEPGM("Media removed");
+        LCD_MESSAGEPGM(MSG_MEDIA_REMOVED);
       #endif
       GOTO_STATE_AFTER_DELAY( WAIT_FOR_DEVICE, 0 );
     }
 
     else if (task_state == UHS_STATE(ERROR)) {
         #if EITHER(ULTRA_LCD, EXTENSIBLE_UI)
-          LCD_MESSAGEPGM("Media read error");
+          LCD_MESSAGEPGM(MSG_MEDIA_READ_ERROR);
         #endif
         GOTO_STATE_AFTER_DELAY( MEDIA_ERROR, 0 );
     }

@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2019 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -25,7 +25,7 @@
 #include "../inc/MarlinConfig.h"
 
 #if ENABLED(EXTENSIBLE_UI)
-  #include "../lcd/extensible_ui/ui_api.h"
+  #include "../lcd/extui/ui_api.h"
 #endif
 
 Stopwatch::State Stopwatch::state;
@@ -39,6 +39,9 @@ bool Stopwatch::stop() {
   #endif
 
   if (isRunning() || isPaused()) {
+    #if ENABLED(EXTENSIBLE_UI)
+      ExtUI::onPrintTimerStopped();
+    #endif
     state = STOPPED;
     stopTimestamp = millis();
     return true;
@@ -52,6 +55,9 @@ bool Stopwatch::pause() {
   #endif
 
   if (isRunning()) {
+    #if ENABLED(EXTENSIBLE_UI)
+      ExtUI::onPrintTimerPaused();
+    #endif
     state = PAUSED;
     stopTimestamp = millis();
     return true;

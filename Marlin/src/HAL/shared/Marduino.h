@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (c) 2019 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
@@ -58,6 +58,9 @@
     //#define strchr_P(s,c) strchr(s,c)
   #endif
 
+  #ifndef snprintf_P
+    #define snprintf_P snprintf
+  #endif
   #ifndef vsnprintf_P
     #define vsnprintf_P vsnprintf
   #endif
