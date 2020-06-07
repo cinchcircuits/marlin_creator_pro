@@ -487,7 +487,6 @@
 #define DEFAULT_Ki 1.22
 #define DEFAULT_Kd 82.05
 
-
 #endif // PIDTEMP
 
 //===========================================================================
@@ -555,7 +554,7 @@
  * Note: For Bowden Extruders make this large enough to allow load/unload.
  */
 #define PREVENT_LENGTHY_EXTRUDE
-#define EXTRUDE_MAXLENGTH 200
+#define EXTRUDE_MAXLENGTH 500
 
 //===========================================================================
 //======================== Thermal Runaway Protection =======================
@@ -668,8 +667,8 @@
 //#define Z2_DRIVER_TYPE A4988
 //#define Z3_DRIVER_TYPE A4988
 //#define Z4_DRIVER_TYPE A4988
-#define E0_DRIVER_TYPE TMC2130
-#define E1_DRIVER_TYPE TMC2130
+#define E0_DRIVER_TYPE LV8729
+#define E1_DRIVER_TYPE LV8729
 //#define E2_DRIVER_TYPE A4988
 //#define E3_DRIVER_TYPE A4988
 //#define E4_DRIVER_TYPE A4988
@@ -722,7 +721,11 @@
  */
 //really Sailfish... got enough precision on that float for an 8 bit system?
 //I'm leaving this in for posterior's sake
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {  94.139704, 94.139704, 400, 96.275201870333662468889989185642 }
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   {  94.139704, 94.139704, 400, 96.275201870333662468889989185642 }
+// M92 X377.09 Y377.03 Z1629.96 E474.00
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 377.09, 377.03, 1629.96, 474 }
+// M92 X364.00 Y377.92 Z1629.96 E44.67
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 364.00, 377.92, 1629.96, 44.67 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -742,7 +745,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 1000, 1000, 100, 5000 }
+#define DEFAULT_MAX_ACCELERATION      { 600, 600, 100, 1000 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -948,7 +951,7 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 }
+#define NOZZLE_TO_PROBE_OFFSET { 17, 42, -11.8 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1048,15 +1051,15 @@
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#define INVERT_X_DIR true
-#define INVERT_Y_DIR true
+#define INVERT_X_DIR false
+#define INVERT_Y_DIR false
 #define INVERT_Z_DIR true
 
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR true
-#define INVERT_E1_DIR true
+#define INVERT_E0_DIR false
+#define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
 #define INVERT_E4_DIR false
@@ -1083,18 +1086,17 @@
 
 // @section machine
 
-
 //these values are used in your slicer
-#define X_BED_SIZE 227
-#define Y_BED_SIZE 148
+#define X_BED_SIZE 230
+#define Y_BED_SIZE 152
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS -115
-#define Y_MIN_POS -84
-#define Z_MIN_POS 0
-#define X_MAX_POS 152
-#define Y_MAX_POS 77
-#define Z_MAX_POS 150
+#define X_MIN_POS -10
+#define Y_MIN_POS -10
+#define Z_MIN_POS -10
+#define X_MAX_POS 235
+#define Y_MAX_POS 152
+#define Z_MAX_POS 165
 
 /**
  * Software Endstops
@@ -1212,7 +1214,7 @@
  * Turn on with the command 'M111 S32'.
  * NOTE: Requires a lot of PROGMEM!
  */
-//#define DEBUG_LEVELING_FEATURE
+#define DEBUG_LEVELING_FEATURE
 
 #if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_BILINEAR, AUTO_BED_LEVELING_UBL)
   // Gradually reduce leveling correction until a set height is reached,
@@ -1340,13 +1342,13 @@
 // @section homing
 
 // The center of the bed is at (X=0, Y=0)
-#define BED_CENTER_AT_0_0
+//#define BED_CENTER_AT_0_0
 
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
 //#define MANUAL_X_HOME_POS 0
 //#define MANUAL_Y_HOME_POS 0
-//#define MANUAL_Z_HOME_POS 0
+//#define MANUAL_Z_HOME_POS 30
 
 // Use "Z Safe Homing" to avoid homing with a Z probe outside the bed area.
 //
@@ -1365,8 +1367,8 @@
 #endif
 
 // Homing speeds (mm/m)
-#define HOMING_FEEDRATE_XY (50*60)
-#define HOMING_FEEDRATE_Z  (4*60)
+#define HOMING_FEEDRATE_XY (20*60)
+#define HOMING_FEEDRATE_Z  (2*60)
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
@@ -1498,7 +1500,7 @@
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z_raise }
-  #define NOZZLE_PARK_POINT { (X_MAX_POS - 2), (Y_MAX_POS - 2), 20 }
+  #define NOZZLE_PARK_POINT { (X_MAX_POS - 2), (Y_MAX_POS - 2), 10 }
   #define NOZZLE_PARK_XY_FEEDRATE 100   // (mm/s) X and Y axes feedrate (also used for delta Z axis)
   #define NOZZLE_PARK_Z_FEEDRATE 5      // (mm/s) Z axis feedrate (not used for delta printers)
 #endif
